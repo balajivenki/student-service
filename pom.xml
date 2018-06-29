@@ -160,11 +160,6 @@
 
     <repositories>
         <repository>
-            <id>central</id>
-            <name>Qualys Internal Repo</name>
-            <url>http://xrepo.dev.qualys.com:8081/nexus/content/groups/qualys-dev-all</url>
-        </repository>
-        <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>http://repo.spring.io/milestone</url>
@@ -185,19 +180,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>qualys-local-releases</id>
-            <name>Qualys Releases</name>
-            <url>http://xrepo.dev.qualys.com:8081/nexus/content/repositories/QualysTrusted/</url>
-        </repository>
-        <snapshotRepository>
-            <id>qualys-local-snapshots</id>
-            <name>Qualys Snapshots</name>
-            <url>http://xrepo.dev.qualys.com:8081/nexus/content/repositories/QualysSnapshot/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
