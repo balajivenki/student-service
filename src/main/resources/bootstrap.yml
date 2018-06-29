@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: student-service
+  cloud:
+    consul:
+      host: 10.113.14.60
+      port: 8500
+      config:
+        enabled: true
+        format: files
+        fail-fast: true
+        prefix: config/meetup
