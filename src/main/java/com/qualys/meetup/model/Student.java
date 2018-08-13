@@ -1,4 +1,4 @@
-package com.qualys.meetup.modal;
+package com.qualys.meetup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,10 +28,10 @@ public class Student {
     private String email;
 
     @JsonIgnore
-    public static Student fromEntityToModal(StudentEntity studentEntity) {
+    public static Student fromEntityToModel(StudentEntity studentEntity) {
         Student student = new Student();
         student.setStudentId(studentEntity.getStudentId());
-        student.setAddress(Address.fromEntityToModal(studentEntity.getAddress()));
+        student.setAddress(Address.fromEntityToModel(studentEntity.getAddress()));
         student.setName(studentEntity.getName());
         student.setEmail(studentEntity.getEmail());
         return student;

@@ -1,10 +1,9 @@
-package com.qualys.meetup.modal;
+package com.qualys.meetup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.qualys.meetup.entity.AddressUDT;
-import com.qualys.meetup.entity.StudentEntity;
 import lombok.Data;
 
 /**
@@ -27,7 +26,7 @@ public class Address {
     long pincode;
 
     @JsonIgnore
-    public static Address fromEntityToModal(AddressUDT addressUDT) {
+    public static Address fromEntityToModel(AddressUDT addressUDT) {
         Address address = new Address();
         address.setStreet(addressUDT.getStreet());
         address.setCity(addressUDT.getCity());

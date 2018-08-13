@@ -2,7 +2,7 @@ package com.qualys.meetup.service;
 
 import com.google.common.collect.Maps;
 import com.qualys.meetup.entity.StudentEntity;
-import com.qualys.meetup.modal.Student;
+import com.qualys.meetup.model.Student;
 import com.qualys.meetup.utils.ServiceConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,8 @@ public class StudentService {
 
     public String addStudent(StudentEntity studentEntity) {
         cassandraService.saveStudent(studentEntity);
-        Student student = Student.fromEntityToModal(studentEntity);
+        Student student = Student.fromEntityToModel(studentEntity);
         elasticService.index(student, ServiceConstant.STUDENT_INDEX, ServiceConstant.STUDENT_TYPE, student.getStudentId().toString());
         return "Student information saved successfully";
     }
-
 }
