@@ -82,5 +82,4 @@ public class ReactiveResource {
 		return studentEntityMono.map(student -> new ResponseEntity(student, HttpStatus.OK))
 				.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-
 }
