@@ -22,7 +22,7 @@ import java.util.*;
 @Slf4j
 @RestController
 @Api(value = "Students Information",
-		description = "API's to save and fetch Student's information",
+		description = "APIs to save and fetch Student's information",
 		produces = "application/json", consumes = "application/json")
 public class StudentResource {
 
@@ -36,11 +36,11 @@ public class StudentResource {
 					name = "name", value = "Search Student by its Name",
 					dataType = "String", paramType = "query"),
 			@ApiImplicitParam(
-					name = "city", value = "Search Student by city",
+					name = "city", value = "Search Student by City",
 					dataType = "String", paramType = "query"),
 			@ApiImplicitParam(
-					name = "email", value = "Search Student by its email",
-					dataType = "String", paramType = "email")
+					name = "email", value = "Search Student by E-Mail",
+					dataType = "String", paramType = "query")
 	})
 	@GetMapping(value = "/students", produces = {"application/json"})
 	public ResponseEntity searchStudents(
@@ -51,12 +51,12 @@ public class StudentResource {
 			List<Map<String, Object>> students = studentService.searchStudent(name, city, email);
 			MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
 			return GenericRESTResponseHandler.generateResponseJSON(students, header, false);
-		} catch (ServiceException exception) {
-			log.error(exception.getMessage());
-			return GenericRESTResponseHandler.generateErrorResponseJSON(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (Exception exception) {
-			log.error(exception.getMessage());
-			return GenericRESTResponseHandler.generateErrorResponseJSON(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (ServiceException se) {
+			log.error(se.getMessage(), se);
+			return GenericRESTResponseHandler.generateErrorResponseJSON(se.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return GenericRESTResponseHandler.generateErrorResponseJSON(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -76,32 +76,32 @@ public class StudentResource {
 					name = "country", value = "",
 					dataType = "String", paramType = "query"),
 			@ApiImplicitParam(
-					name = "pincode", value = "",
+					name = "pinCode", value = "",
 					dataType = "Long", paramType = "query"),
 			@ApiImplicitParam(
 					name = "city", value = "",
 					dataType = "String", paramType = "query")
 	})
 	@PutMapping(value = "/student", produces = {"application/json"})
-	public ResponseEntity addStudents(
+	public ResponseEntity addStudent(
 			@RequestParam(name = "name", required = true) String name,
 			@RequestParam(name = "email", required = false) String email,
 			@RequestParam(name = "street", required = false) String street,
 			@RequestParam(name = "country", required = false) String country,
-			@RequestParam(name = "pincode", required = false) Long pincode,
+			@RequestParam(name = "pinCode", required = false) Long pinCode,
 			@RequestParam(name = "city", required = false) String city) {
 		try {
 
-			AddressUDT address = AddressUDT.of(street, city, country, pincode);
+			AddressUDT address = AddressUDT.of(street, city, country, pinCode);
 			StudentEntity studentEntity = StudentEntity.of(UUID.randomUUID(), name, address, email);
 			studentService.addStudent(studentEntity);
 			return GenericRESTResponseHandler.generateResponseJSON("Student details saved successfully", false);
-		} catch (ServiceException exception) {
-			log.error(exception.getMessage());
-			return GenericRESTResponseHandler.generateErrorResponseJSON(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (Exception exception) {
-			log.error(exception.getMessage());
-			return GenericRESTResponseHandler.generateErrorResponseJSON(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (ServiceException se) {
+			log.error(se.getMessage(), se);
+			return GenericRESTResponseHandler.generateErrorResponseJSON(se.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return GenericRESTResponseHandler.generateErrorResponseJSON(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
