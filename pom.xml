@@ -18,7 +18,7 @@
     </parent>
 
     <properties>
-        <application.version>1.0.4</application.version>
+        <application.version>1.0.1</application.version>
         <release.number>SNAPSHOT</release.number>
         <spring.version>5.0.5.RELEASE</spring.version>
         <spring-cloud-consul-version>2.0.0.M5</spring-cloud-consul-version>
@@ -95,6 +95,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
         </dependency>
 
         <!--  Cassandra -->

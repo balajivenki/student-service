@@ -1,26 +1,41 @@
-server:
+cassandra: 
+  cluster: 
+    password: cassandra
+    pooling: 
+      maxThread: 15
+      timeout: 5000
+    user: cassandra
+  host: "127.0.0.1:9042,127.0.0.2:9042"
+  keyspaces: 
+    keyspace: 
+      name: meetup
+      readConsistency: ONE
+      writeConsistency: ONE
+  ttl-near: 864000
+elasticsearch: 
+  client.transport.nodes_sampler_interval: 10s
+  client.transport.ping_timeout: 10s
+  hosts: "localhost:9300"
+  http-port: 9200
+  password: ~
+  username: ~
+management: 
+  cassandra.query: "select * from student limit 1;"
+  elasticsearch.template.name: students
+  endpoint: 
+    health.enabled: true
+    health.show-details: always
+  endpoints: 
+    enabled-by-default: false
+    web: 
+      base-path: /
+      path-mapping.health: health
+  health.diskspace.enabled: false
+  server.port: 8911
+server: 
   port: 8900
-  servlet.context-path: /api
-
-cassandra:
- host: 127.0.0.1:9042,127.0.0.2:9042
- ttl-near: 864000
- cluster:
-   user: cassandra
-   password: cassandra
-   pooling:
-     maxThread: 15
-     timeout: 5000
- keyspaces:
-   keyspace:
-     name: meetup
-     readConsistency: ONE
-     writeConsistency: ONE
-
-elasticsearch:
- hosts: localhost:9300
- http-port: 9200
- username:
- password:
- client.transport.ping_timeout: 10s
- client.transport.nodes_sampler_interval: 10s
+  servlet.context-path: /meetup
+spring: 
+  application: 
+    name: student-service
+    version: 1..0.1-SNAPSHOT
