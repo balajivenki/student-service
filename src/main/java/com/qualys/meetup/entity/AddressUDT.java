@@ -30,5 +30,4 @@ public class AddressUDT {
         addressUDT.setPincode(pincode);
         return addressUDT;
     }
-
 }

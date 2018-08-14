@@ -33,5 +33,4 @@ public class SwaggerConfig {
                 .contact(new Contact("Meetup-API", "", "aagarwal@qualys.com"))
                 .build();
     }
-
 }
