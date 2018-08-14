@@ -6,7 +6,7 @@ Demonstration of how we can connect to cassandra, elasticsearch using spring boo
    PUT : `http://localhost:9200/students`  
 3. Configure the student-service.yml in Consul in some path lets `arpan/meetup/student-service.yml`.  
    Give the following consul location via VM argument while running the application:  
-   `-Dspring.cloud.consul.host=qconsul.p08.eng.sjc01.qualys.com`  
+   `-Dspring.cloud.consul.host=consul.url.com`  
    `-Dspring.cloud.consul.port=80`  
    `-Dspring.cloud.consul.config.prefix=arpan/meetup`  
 
