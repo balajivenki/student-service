@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.UDT;
 import lombok.Data;
-import java.io.Serializable;
 
 @UDT(keyspace = "meetup", name="address")
 @Data
-public class AddressUDT implements Serializable {
-
-    private static final long serialVersionUID = 30948433721873526L;
+public class AddressUDT {
 
     @Column("street")
     private String street;

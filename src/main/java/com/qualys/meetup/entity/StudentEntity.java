@@ -11,8 +11,6 @@ import java.util.UUID;
 @Data
 public class StudentEntity {
 
-    private static final long serialVersionUID = 30948433721873526L;
-
     @Column("student_id")
     @PartitionKey(value = 1)
     private UUID studentId;
