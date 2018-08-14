@@ -16,7 +16,4 @@ public class RepositoryConfiguration {
     StudentEntity_Manager studentEntityManager(){
        return managerFactory.forStudentEntity();
     }
-
-
-
 }

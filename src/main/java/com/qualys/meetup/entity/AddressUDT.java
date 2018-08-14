@@ -33,5 +33,4 @@ public class AddressUDT implements Serializable {
         addressUDT.setPincode(pincode);
         return addressUDT;
     }
-
 }
