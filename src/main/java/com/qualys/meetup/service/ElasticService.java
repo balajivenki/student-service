@@ -4,15 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qualys.meetup.exception.ServiceException;
 import com.qualys.meetup.utils.ServiceConstant;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexRequestBuilder;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.index.engine.VersionConflictEngineException;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -50,7 +47,7 @@ public class ElasticService {
         if (queryParams.size() > 0) {
             BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
             queryParams.forEach((paramName, paramValue) -> {
-                boolQueryBuilder.should(QueryBuilders.matchQuery(paramName, paramValue));
+                boolQueryBuilder.should(QueryBuilders.matchPhrasePrefixQuery(paramName, paramValue).slop(100));
             });
             boolQueryBuilder.minimumShouldMatch(String.valueOf(queryParams.size()));
             searchRequestBuilder.setQuery(boolQueryBuilder);
