@@ -2,10 +2,10 @@ package com.qualys.meetup.management;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Health.Builder;
 import org.springframework.boot.actuate.health.ReactiveHealthIndicator;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -26,11 +26,8 @@ public class ServiceHealthCheck implements ReactiveHealthIndicator {
 	protected static final String CASSANDRA = "cassandra";
 	private static final String CONSUL = "consul";
 
-	@Value("${spring.application.name}")
-	private String applicationName;
-
-	@Value("${spring.application.version}")
-	private String applicationVersion;
+	@Autowired
+	private BuildProperties buildProperties;
 
 	@Autowired
 	private CassandraHealthChecker cassandraHealthChecker;
@@ -44,8 +41,10 @@ public class ServiceHealthCheck implements ReactiveHealthIndicator {
 	@Override
 	public Mono<Health> health() {
 		Health.Builder builder = new Health.Builder();
-		builder.withDetail("name", applicationName);
-		builder.withDetail("version", applicationVersion);
+		builder.withDetail("name", buildProperties.getName());
+		builder.withDetail("version", buildProperties.getVersion());
+		builder.withDetail("artifact", buildProperties.getArtifact());
+		builder.withDetail("group", buildProperties.getGroup());
 		boolean healthStatus = true;
 		try {
 			healthStatus = checkConsulHealth(builder, healthStatus);
@@ -54,7 +53,7 @@ public class ServiceHealthCheck implements ReactiveHealthIndicator {
 		} catch (Exception e) {
 			builder.down(e);
 			healthStatus = false;
-			log.error("Health check is not working", e);
+			log.error("Unexpected error while checking health", e);
 		}
 		if (healthStatus) {
 			log.info("Health check completed successfully");
