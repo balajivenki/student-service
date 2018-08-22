@@ -8,7 +8,7 @@ cassandra:
     password: demo8in03
   keyspaces:
     keyspace: 
-      name: spring-demo
+      name: spring_demo
       readConsistency: ONE
       writeConsistency: ONE
   ttl-near: 864000

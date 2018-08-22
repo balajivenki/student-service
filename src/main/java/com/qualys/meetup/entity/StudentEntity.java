@@ -7,8 +7,8 @@ import java.util.UUID;
 /**
  * Created by aagarwal on 6/12/2018.
  */
-@Table(keyspace = "meetup", table = "student")
 @Data
+@Table(keyspace = "spring_demo", table = "student")
 public class StudentEntity {
 
     @Column("student_id")
