@@ -5,8 +5,8 @@ import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.UDT;
 import lombok.Data;
 
-@UDT(keyspace = "meetup", name="address")
 @Data
+@UDT(keyspace = "spring_demo", name="address")
 public class AddressUDT {
 
     @Column("street")
