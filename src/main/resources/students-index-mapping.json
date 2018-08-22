@@ -32,7 +32,7 @@
                         "include_in_parent": true,
                         "properties": {
                             "street": {
-                                "type": "keyword",
+                                "type": "text",
 								"fields": {
                                     "raw": {
                                         "type": "keyword"
@@ -40,7 +40,7 @@
                                 }
                             },
 							"city": {
-                                "type": "keyword",
+                                "type": "text",
 								"fields": {
                                     "raw": {
                                         "type": "keyword"
@@ -48,7 +48,7 @@
                                 }
                             },
 							"country": {
-                                "type": "keyword",
+                                "type": "text",
 								"fields": {
                                     "raw": {
                                         "type": "keyword"
