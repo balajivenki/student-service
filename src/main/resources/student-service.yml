@@ -1,14 +1,14 @@
-cassandra: 
+cassandra:
+  host: "cassdb01.p07.eng.in03.qualys.com:50126,cassdb02.p07.eng.in03.qualys.com:50126,cassdb03.p07.eng.in03.qualys.com:50126,cassdb04.p07.eng.in03.qualys.com:50126,cassdb05.p07.eng.in03.qualys.com:50126"
   cluster: 
-    password: cassandra
-    pooling: 
+    pooling:
       maxThread: 15
       timeout: 5000
-    user: cassandra
-  host: "127.0.0.1:9042,127.0.0.2:9042"
-  keyspaces: 
+    user: spring
+    password: demo8in03
+  keyspaces:
     keyspace: 
-      name: meetup
+      name: spring-demo
       readConsistency: ONE
       writeConsistency: ONE
   ttl-near: 864000

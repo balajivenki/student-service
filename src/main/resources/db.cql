@@ -1,5 +1,5 @@
-create keyspace meetup with replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } and durable_writes = true;
-use meetup;
+create keyspace spring_demo with replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } and durable_writes = true;
+use spring_demo;
 
 CREATE TYPE address (
 street text,
