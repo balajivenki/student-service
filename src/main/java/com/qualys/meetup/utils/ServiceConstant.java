@@ -14,7 +14,7 @@ public final class ServiceConstant {
 
     public static final String NAME = "name";
 
-    public static final String CITY = "city";
+    public static final String CITY = "address.city";
 
     public static final String EMAIL = "email";
 
