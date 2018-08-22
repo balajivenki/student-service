@@ -15,8 +15,8 @@ cassandra:
 elasticsearch: 
   client.transport.nodes_sampler_interval: 10s
   client.transport.ping_timeout: 10s
-  hosts: "localhost:9300"
-  http-port: 9200
+  hosts: "elsdatacer02.p07.eng.in03.qualys.com:50141,elsdatacer03.p07.eng.in03.qualys.com:50141"
+  http-port: 50140
   password: ~
   username: ~
 management: 
